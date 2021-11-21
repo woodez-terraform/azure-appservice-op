@@ -1,4 +1,10 @@
 terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=3.0.0"
+    }
+  }
   backend "pg" {
       conn_str="postgres://tf_user:jandrew28@192.168.2.213/terraform_backend?sslmode=disable"
   }  
