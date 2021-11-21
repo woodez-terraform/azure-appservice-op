@@ -31,7 +31,7 @@ resource "azurerm_app_service" "example" {
   app_service_plan_id = azurerm_app_service_plan.example.id
 
   site_config {
-    python_version = "v3.8"
+    python_version = "3.4"
     scm_type   = "LocalGit"
   }
  
