@@ -25,7 +25,7 @@ pipeline {
                 if (params.Action == "Build"){
                     sh """
                        terraform get -update
-                       terraform init -backend-config='conn_str=postgres://tf_user:jandrew28@192.168.2.213/terraform_backend?sslmode=disable'
+                       terraform init -upgrade -backend-config='conn_str=postgres://tf_user:jandrew28@192.168.2.213/terraform_backend?sslmode=disable'
                        terraform workspace new ${params.Project}
                        terraform workspace list
                        terraform workspace select ${params.Project}
