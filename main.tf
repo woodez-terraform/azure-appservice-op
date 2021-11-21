@@ -17,6 +17,8 @@ resource "azurerm_app_service_plan" "example" {
   name                = "${var.project}-appserviceplan"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
+  kind                = "Linux"
+  reserved            = true
 
   sku {
     tier = "${var.tier}"
@@ -30,15 +32,13 @@ resource "azurerm_app_service" "example" {
   resource_group_name = azurerm_resource_group.example.name
   app_service_plan_id = azurerm_app_service_plan.example.id
 
-#  site_config {
-#    python_version = "3.4"
-#  }
+  site_config {
+    scm_type          = "ExternalGit"
+  }
  
   source_control {
     repo_url           = "${var.giturl}"
     branch             = "${var.branch}"
-    manual_integration = true
-    use_mercurial      = false
   }
 
 }
