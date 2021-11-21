@@ -19,8 +19,8 @@ resource "azurerm_app_service_plan" "example" {
   resource_group_name = azurerm_resource_group.example.name
 
   sku {
-    tier = "Free"
-    size = "F1"
+    tier = "${var.tier}"
+    size = "${var.size}"
   }
 }
 
@@ -37,7 +37,7 @@ resource "azurerm_app_service" "example" {
  
   source_control {
     repo_url           = "${var.giturl}"
-    branch             = "master"
+    branch             = "${var.branch}"
     manual_integration = true
     use_mercurial      = false
   }

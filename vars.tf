@@ -12,3 +12,9 @@ variable  "giturl" {
 variable "project" {
   type    = string
 }
+variable "tier" {
+  type    = string  
+}
+variable "size" {
+  type    = string  
+}
