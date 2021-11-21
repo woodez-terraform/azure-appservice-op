@@ -32,7 +32,7 @@ resource "azurerm_app_service" "example" {
 
   site_config {
     python_version = "3.4"
-    scm_type   = "LocalGit"
+    scm_type   = "Git"
   }
  
   source_control {
