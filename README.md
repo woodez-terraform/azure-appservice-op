@@ -12,3 +12,7 @@ https://github.com/hashicorp/terraform-provider-azurerm/issues/3696
 
 https://github.com/hashicorp/terraform-provider-azurerm/issues/3696
 https://resources.azure.com/subscriptions/afef2d13-b9f0-4a6c-aa59-050b04b6eec7/resourceGroups/woodezlearning/providers/Microsoft.Web/sites/django-azure-demo2/config/web
+
+https://docs.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel
+
+https://github.com/Azure-Samples/pythonSample_thecatsaidno
