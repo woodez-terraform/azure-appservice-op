@@ -6,6 +6,7 @@ pipeline {
       string(defaultValue: 'Project name', name: 'Project', description: 'Create a project to spin up an azure IAAS instance', trim: true)
       string(defaultValue: 'https://github.com/Azure-Samples/python-docs-hello-django.git', name: 'giturl', description: 'git url for app code')
       string(defaultValue: 'master', name: 'branch', description: 'git branch')
+      string(defaultValue: 'eastus2', name: 'Location', description: 'azure region')
       choice(choices: ['Free'], name: 'tier', description: 'app service plan tier')
       choice(choices: ['F1'], name: 'size', description: 'app service plan size')
       choice(choices: ['Build', 'Teardown', 'Show'], description: 'Pick a action that you want to perform on your project', name: 'Action')
@@ -19,7 +20,7 @@ pipeline {
       }  
     }
 
-    stage('apply terraform') {
+    stage('Create App Service in Azure') {
         steps {
             script {
                 if (params.Action == "Build"){
@@ -43,6 +44,29 @@ pipeline {
                        terraform destroy -var=\"project=${params.Project}\" -var=\"giturl=${params.giturl}\" -var=\"branch=${params.branch}\" -var=\"tier=${params.tier}\" -var=\"size=${params.size}\" -auto-approve
                        terraform workspace select default
                        terraform workspace delete ${params.Project}  
+                    """
+                }
+            }
+        }
+    }
+
+    stage('Deploy app to app service') {
+        steps {
+            script {
+                if (params.Action == "Build"){
+                    build job: 'app-service-deploy', parameters: [
+                    string(name: 'Location', value: "${params.Location}"),
+                    string(name: 'Resourcegroup', value: "${params.Project}-app-rg"),
+                    string(name: 'Appserviceplan', value: "${params.Project}-appserviceplan"),
+                    string(name: 'Appservice', value: "${params.Project}-app-service"),
+                    string(name: 'appurl', value: "${params.giturl}"),
+                    string(name: 'tier', value: "Free"),
+                    string(name: 'size', value: "F1")   
+                    ]
+                }
+                else {
+                    sh """
+                       echo NOT_DOING_CODE_DEPLOY_ON_A_TEARDOWN 
                     """
                 }
             }
