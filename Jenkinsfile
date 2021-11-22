@@ -4,10 +4,10 @@ pipeline {
 
   parameters{
       string(defaultValue: 'Project name', name: 'Project', description: 'Create a project to spin up an azure IAAS instance', trim: true)
-      string(defaultValue: 'Git url', name: 'giturl', description: 'git url for app code')
+      string(defaultValue: 'https://github.com/Azure-Samples/python-docs-hello-django.git', name: 'giturl', description: 'git url for app code')
       string(defaultValue: 'master', name: 'branch', description: 'git branch')
-      string(defaultValue: 'pick tier', name: 'tier', description: 'app service plan tier')
-      string(defaultValue: 'pick size', name: 'size', description: 'app service plan size')
+      choice(choices: ['Free'], name: 'tier', description: 'app service plan tier')
+      choice(choices: ['F1'], name: 'size', description: 'app service plan size')
       choice(choices: ['Build', 'Teardown', 'Show'], description: 'Pick a action that you want to perform on your project', name: 'Action')
   }
 
