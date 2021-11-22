@@ -38,12 +38,8 @@ resource "azurerm_app_service" "example" {
   resource_group_name = azurerm_resource_group.example.name
   app_service_plan_id = azurerm_app_service_plan.example.id
 
-  source_control {
-    repo_url           = "${var.giturl}"
-    branch             = "${var.branch}"
-  }
-
-  lifecycle {
-    ignore_changes = [site_config.0.scm_type]
+  site_config {
+    python_version = "3.4"
+    scm_type = "LocalGit"
   }
 }
