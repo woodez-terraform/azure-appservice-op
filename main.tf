@@ -38,20 +38,12 @@ resource "azurerm_app_service" "example" {
   resource_group_name = azurerm_resource_group.example.name
   app_service_plan_id = azurerm_app_service_plan.example.id
 
-#  source_control {
-#    repo_url           = "${var.giturl}"
-#    branch             = "${var.branch}"
-#  }
+  source_control {
+    repo_url           = "${var.giturl}"
+    branch             = "${var.branch}"
+  }
 
   lifecycle {
     ignore_changes = [site_config.0.scm_type]
-  
   }
-}
-
-resource "azurerm_app_service_source_control" "example" {
-  app_service_id        = "${azurerm_app_service.example.id}"
-  repo_url              = "${var.giturl}"
-  is_manual_integration = true
-  branch                = "${var.branch}"
 }
