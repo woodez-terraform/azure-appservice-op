@@ -4,7 +4,7 @@ pipeline {
 
   parameters{
       string(defaultValue: 'Project name', name: 'Project', description: 'Create a project to spin up an azure IAAS instance', trim: true)
-      string(defaultValue: 'https://github.com/Azure-Samples/python-docs-hello-django.git', name: 'giturl', description: 'git url for app code')
+      string(defaultValue: 'https://github.com/woodez-terraform/python-docs-hello-django.git', name: 'giturl', description: 'git url for app code')
       string(defaultValue: 'master', name: 'branch', description: 'git branch')
       string(defaultValue: 'eastus2', name: 'Location', description: 'azure region')
       choice(choices: ['Free'], name: 'tier', description: 'app service plan tier')
