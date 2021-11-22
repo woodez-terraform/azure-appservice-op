@@ -28,8 +28,7 @@ pipeline {
                        terraform init -upgrade -backend-config='conn_str=postgres://tf_user:jandrew28@192.168.2.213/terraform_backend?sslmode=disable'
                        terraform workspace select default
                        terraform workspace list > current-workspaces
-                       [[ `grep ${params.Project} current-workspaces` ]] && terraform workspace delete -force ${params.Project}
-                       terraform workspace new ${params.Project}
+                       [[ `grep ${params.Project} current-workspaces` ]] || terraform workspace new ${params.Project}
                        terraform workspace list
                        terraform workspace select ${params.Project}
                        terraform plan -var=\"project=${params.Project}\" -var=\"giturl=${params.giturl}\" -var=\"branch=${params.branch}\" -var=\"tier=${params.tier}\" -var=\"size=${params.size}\" -out myplan                    
