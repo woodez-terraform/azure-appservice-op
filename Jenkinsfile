@@ -14,13 +14,13 @@ pipeline {
 
   stages {
 
-    stage('Checkout') {
+    stage('Putting on Magic Hat') {
       steps {
           checkout scm
       }  
     }
 
-    stage('Create App Service in Azure') {
+    stage('Pulling App Service in Azure out of Hat') {
         steps {
             script {
                 if (params.Action == "Build"){
@@ -50,7 +50,7 @@ pipeline {
         }
     }
 
-    stage('Deploy app to app service') {
+    stage('Deploying app to app service') {
         steps {
             script {
                 if (params.Action == "Build"){
@@ -72,6 +72,11 @@ pipeline {
             }
         }
     }
-
+    stage('Magic Show is over'){
+        steps {
+            echo 'Thanks for Attending Magic show..'
+        }
+    } 
+    
   } 
 }
