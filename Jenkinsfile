@@ -72,7 +72,7 @@ pipeline {
             }
         }
     }
-    stage('Magic Show is over'){
+    stage('Magic Show is over..BOOOOM'){
         steps {
             echo 'Thanks for Attending Magic show..'
         }
