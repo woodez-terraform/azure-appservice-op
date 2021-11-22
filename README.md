@@ -16,3 +16,6 @@ https://resources.azure.com/subscriptions/afef2d13-b9f0-4a6c-aa59-050b04b6eec7/r
 https://docs.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel
 
 https://github.com/Azure-Samples/pythonSample_thecatsaidno
+
+# call another jenkins job from existing job
+https://www.edureka.co/community/8876/how-to-trigger-jenkins-pipeline-in-another-jenkins-pipeline
